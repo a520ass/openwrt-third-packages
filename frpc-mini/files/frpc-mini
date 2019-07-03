@@ -1,0 +1,110 @@
+#!/bin/sh /etc/rc.common
+
+START=99
+SERVICE_WRITE_PID=1
+SERVICE_DAEMONIZE=1
+
+# 版本号
+VERSION="0.27.0"
+# frp 目录
+FRP_PATH="/tmp/etc/frp"
+# frpc可执行文件路径
+FRPC_BIN_PATH="/tmp/etc/frp/frpc"
+# 是否启用frpc
+ENABLED="0"
+
+routercpu(){
+	for a in $(opkg print-architecture | awk '{print $2}'); do
+		case "$a" in
+			all|noarch)
+				;;
+			aarch64_armv8-a|arm_arm1176jzf-s_vfp|arm_arm926ej-s|arm_cortex-a15_neon-vfpv4|arm_cortex-a5|arm_cortex-a53_neon-vfpv4|arm_cortex-a7_neon-vfpv4|arm_cortex-a8_vfpv3|arm_cortex-a9|arm_cortex-a9_neon|arm_cortex-a9_vfpv3|arm_fa526|arm_mpcore|arm_mpcore_vfp|arm_xscale|armeb_xscale)
+				ARCH="arm"
+				;;
+			i386_pentium|i386_pentium4)
+				ARCH="386"
+				;;
+			ar71xx|mips_24kc|mips_mips32|mips64_octeon)
+				ARCH="mips"
+				;;
+			mipsel_24kc|mipsel_24kec_dsp|mipsel_74kc|mipsel_mips32|mipsel_1004kc_dsp|ramips_1004kc|ramips_24kec)
+				ARCH="mipsle"
+				;;
+			x86_64)
+				ARCH="amd64"
+				;;
+			*)
+				echo Architectures $a not support
+				exit 0
+				;;
+		esac
+	done
+
+	echo Target Arch: $ARCH
+}
+
+downfile(){
+	download="download_binary"
+}
+
+download_binary(){
+	stop
+	routercpu
+	echo "开始下载frpc二进制文件"
+	tmpfile=/tmp/etc/tmp_frpc
+	rm -rf $FRPC_BIN_PATH
+	
+	[ ! -s "$FRPC_BIN_PATH" ] && wget --timeout=60 http://223.84.197.210:16282/dl/files/frp/v$VERSION/$ARCH/frpc-mini -O $tmpfile && echo "成功下载frpc二进制文件"
+
+	mv $tmpfile $FRPC_BIN_PATH
+	[ -f "$FRPC_BIN_PATH" ] && ln -sf $FRPC_BIN_PATH /usr/bin/frpc-mini
+
+	if [ -L /usr/bin/frpc-mini ]; then
+		chmod +x $FRPC_BIN_PATH && [ -x "$FRPC_BIN_PATH" ] && echo "frpc 下载完成"
+
+	else
+		echo "下载frpc二进制文件失败，请重试！"
+	fi
+}
+
+boot() {
+	sleep 10s
+	start
+}
+
+start() {
+    [ "$ENABLED" -gt 0 ] || return 1
+
+	mkdir -p $FRP_PATH
+	downfile
+
+	[ -f "$FRPC_BIN_PATH" ] && chmod +x $FRPC_BIN_PATH  && echo "frpc 正常" && ln -sf $FRPC_BIN_PATH /usr/bin/frpc-mini
+
+	[ ! -f "/usr/bin/frpc-mini" ] && $download
+
+	[ "$VERSION" != "$(/usr/bin/frpc-mini -v)" ] && echo "延迟60s 重新下载frpc！" && sleep 60s && rm -rf /usr/bin/frpc-mini && $download
+
+	[ ! -f "/usr/bin/frpc-mini" ] && echo "下载frpc二进制文件失败，请重试！" && exit 0
+
+	local tmpconf="/etc/config/frpc-mini/frpc.ini"
+
+	echo "启动 frpc service"
+	SERVICE_DAEMONIZE=1 \
+		service_start /usr/bin/frpc-mini -c $tmpconf
+
+	return 0
+}
+
+stop() {
+	if [ -n "`pidof frpc-mini`" ]; then
+		echo "停止 frpc service"
+		service_stop /usr/bin/frpc-mini
+	fi
+	return 0
+}
+
+restart() {
+    stop
+    sleep 3s
+    start
+}
