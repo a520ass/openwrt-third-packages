@@ -25,6 +25,15 @@ define Package/$(PKG_NAME)/description
 frpc-mini - fast reverse proxy client
 endef
 
+define Build/Prepare
+endef
+
+define Build/Configure
+endef
+
+define Build/Compile
+endef
+
 define Package/$(PKG_NAME)/install
 	$(INSTALL_DIR) $(1)/etc/config/frpc-mini
 	$(INSTALL_DATA) ./files/frpc.ini $(1)/etc/config/frpc-mini/frpc.ini
