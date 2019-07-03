@@ -23,9 +23,9 @@ define Package/luci-app-shadowsocks/Default
 	SECTION:=luci
 	CATEGORY:=LuCI
 	SUBMENU:=3. Applications
-	TITLE:=LuCI Support for shadowsocks
+	TITLE:=LuCI Support for ss (from github.com/shadowsocks)
 	PKGARCH:=all
-	DEPENDS:=+iptables $(1)
+	DEPENDS:=+iptables +iptables-mod-tproxy $(1)
 endef
 
 Package/luci-app-shadowsocks = $(call Package/luci-app-shadowsocks/Default,+ipset)
