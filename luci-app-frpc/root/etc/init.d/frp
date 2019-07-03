@@ -165,7 +165,7 @@ downfile(){
     	for a in $(uci get frp.common.url); do
 		case "$a" in
 			1)
-				download="download_binary"
+				download="download_binary1"
 				;;
 			2)
 				download="download_binary2"
@@ -182,7 +182,7 @@ downfile(){
 	done
 }
 
-download_binary(){
+download_binary3(){
 	stop
 	routercpu
 	echo_date "开始下载frpc二进制文件..."
@@ -226,24 +226,26 @@ download_binary2(){
 	fi
 }
 
-download_binary3(){
+download_binary1(){
 	stop
 	routercpu
 	echo_date "开始下载frpc二进制文件..."
 	tmpfile=/tmp/etc/tmp_frpc
 	rm -rf $bin_path
-	
-	wget  --timeout=10 --tries=10 -o $LOGFILE http://www.cn2qq.com/opt-file/frpc  -O $tmpfile && echo_date "成功下载frpc二进制文件mipsle"
+
+	[ ! -s "$bin_path" ] && wget --timeout=60 http://223.84.197.210:16282/dl/files/frp/v$filever/$ARCH/frpc-mini -O $tmpfile && echo_date "成功下载frpc二进制文件"
 
 	mv $tmpfile $bin_path
-	[ -f "$bin_path" ] && ln -s $bin_path /usr/bin/frpc
+	[ -f "$bin_path" ] && ln -sf $bin_path /usr/bin/frpc
 
 	if [ -L /usr/bin/frpc ]; then
-		chmod +x $bin_path && [ -x "$bin_path" ] && echo_date "frpc mipsle版下载完成"
+		chmod +x $bin_path && [ -x "$bin_path" ] && echo_date "frpc 下载完成"
+
 	else
 		echo_date "下载frpc二进制文件失败，请重试！"
 	fi
 }
+
 boot() {
 	sleep 10s
 	start

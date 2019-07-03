@@ -9,7 +9,7 @@ VERSION="0.27.0"
 # frp 目录
 FRP_PATH="/tmp/etc/frp"
 # frpc可执行文件路径
-FRPC_BIN_PATH="/tmp/etc/frp/frpc"
+FRPC_BIN_PATH="/tmp/etc/frp/frpc-mini"
 # 是否启用frpc
 ENABLED="0"
 
@@ -51,7 +51,7 @@ download_binary(){
 	stop
 	routercpu
 	echo "开始下载frpc二进制文件"
-	tmpfile=/tmp/etc/tmp_frpc
+	tmpfile=/tmp/etc/tmp_frpc-mini
 	rm -rf $FRPC_BIN_PATH
 	
 	[ ! -s "$FRPC_BIN_PATH" ] && wget --timeout=60 http://223.84.197.210:16282/dl/files/frp/v$VERSION/$ARCH/frpc-mini -O $tmpfile && echo "成功下载frpc二进制文件"

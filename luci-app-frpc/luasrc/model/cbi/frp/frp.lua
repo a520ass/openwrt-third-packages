@@ -49,9 +49,9 @@ e:value("/etc/frp/frpc", translate("Flash  /etc/frp/frpc"))
 e=t:taboption("base", ListValue,"url" ,  translate("Download source address"), 
 	translate("<br /><input type=\"button\" class=\"cbi-button cbi-button-apply\" value=\"https://github.com/fatedier/frp/releases\" onclick=\"window.open('https://github.com/fatedier/frp/releases')\" /><br /><input type=\"button\" class=\"cbi-button cbi-button-apply\" value=\"http://down.xxorg.com/frp 国内源\" onclick=\"window.open('http://down.xxorg.com/?directory=./frp/')\" />"))
 e.rmempty=false
-e:value("1", translate("https://github.com/fatedier/frp/releases"))
+e:value("1", translate("a520ass自用专用源(v26、v27)"))
 e:value("2", translate("http://down.xxorg.com/frp 国内源"))
-e:value("3", translate("http://www.cn2qq.com MTK 处理器专用源"))
+e:value("3", translate("https://github.com/fatedier/frp/releases"))
 
 e=t:taboption("base",Value, "server_addr", translate("Server"), translate("<strong>0.10.0以上版本：</strong><br />freenat.bid 密码：frp888 兼容0.10.0-0.16.1版本 支持HTTP KCP协议<br />freenat.club 密码：frp888 兼容0.18.0-0.24.1版本 支持HTTP KCP协议<br /><br />frpzj.kskxs.com 密码：frp888 开放50000-60000范围的TCP、UDP端口映射 支持HTTP <br />www.nat.ee 密码：www.nat.ee<br />frp1.chuantou.org 支持HTTP 使用KCP协议 密码：www.xxorg.com"))
 e.rmempty=false
