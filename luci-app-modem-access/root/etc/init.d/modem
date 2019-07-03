@@ -1,0 +1,54 @@
+#!/bin/sh /etc/rc.common
+# Copyright (c) 2011-2015 OpenWrt.org
+
+START=95
+#STOP=15
+
+get_config() {
+	config_get_bool enable $1 enable 0
+	config_get ifname $1 ifname
+	config_get ipaddr $1 ipaddr
+	config_get netmask $1 netmask
+}
+
+start() {
+	config_load modem
+	config_foreach get_config modem
+	[ $enable -eq 0 ] && exit 0
+
+	have_modem=$(uci show network | grep -c "modem")
+	if [ "$have_modem" = "0" ]; then
+		uci set network.modem='interface'
+		uci set network.modem.proto='static'
+		uci set network.modem.ifname=$ifname
+		uci set network.modem.ipaddr=$ipaddr
+		uci set network.modem.netmask=$netmask
+		uci commit network
+
+		ifup modem
+	fi
+
+	wan_zone=$(uci get firewall.@zone[1].network)
+	have_modem=$(echo $wan_zone | grep -c "modem")
+	if [ "$have_modem" = "0" ]; then
+		uci set firewall.@zone[1].network="$wan_zone modem"
+		uci commit firewall
+
+		fw3 restart
+	fi
+
+	echo "modem access has started."
+}
+
+stop() {
+	ifdown modem
+	uci delete network.modem
+	uci commit network
+
+	wan_zone=$(uci get firewall.@zone[1].network | sed -e 's/ modem//')
+	uci set firewall.@zone[1].network="$wan_zone"
+	uci commit firewall
+	fw3 restart
+
+	echo "modem access has stopped."
+}

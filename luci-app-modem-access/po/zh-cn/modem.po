@@ -1,0 +1,11 @@
+msgid "Basic Setting"
+msgstr "基本配置"
+
+msgid "Access Modem"
+msgstr "光猫访问"
+
+msgid "Access modem in bridge mode"
+msgstr "访问桥接模式的光猫"
+
+msgid "Enable"
+msgstr "启用"
