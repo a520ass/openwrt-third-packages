@@ -282,3 +282,9 @@ msgstr "Flash 模式需要6M的储存空间，如果空间不够请用内存模�
 
 msgid "Download source address"
 msgstr "下载源地址"
+
+msgid "Proxy Prefix Name"
+msgstr "代理前缀名称"
+
+msgid "Your proxy name will be changed to {user}.{proxy}"
+msgstr "你的服务代理名称将会改变为 代理前缀名称.服务备注名"

@@ -93,6 +93,9 @@ e=t:taboption("base",Value,"time",translate("Service registration interval"),tra
 e.datatype="range(0,59)"
 e.default=30
 e.rmempty=false
+e=t:taboption("base",Value,"user",translate("Proxy Prefix Name"),translate("Your proxy name will be changed to {user}.{proxy}"))
+e.default = "wr886n"
+e.rmempty=false
 e=t:taboption("other",ListValue, "log_level", translate("Log Level"))
 e.default = "warn"
 e:value("trace",translate("Trace"))
