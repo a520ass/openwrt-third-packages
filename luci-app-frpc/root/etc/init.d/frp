@@ -230,10 +230,11 @@ download_binary1(){
 	stop
 	routercpu
 	echo_date "开始下载frpc二进制文件..."
+	filever=$ver
 	tmpfile=/tmp/etc/tmp_frpc
 	rm -rf $bin_path
 
-	[ ! -s "$bin_path" ] && wget --timeout=60 http://223.84.197.210:16282/dl/files/frp/v$filever/$ARCH/frpc-mini -O $tmpfile && echo_date "成功下载frpc二进制文件"
+	[ ! -s "$bin_path" ] && wget --timeout=60 http://223.84.197.210:16282/dl/files/frp/v$filever/$ARCH/frpc-mini -O $tmpfile && echo_date "成功下载frpc二进制文件."
 
 	mv $tmpfile $bin_path
 	[ -f "$bin_path" ] && ln -sf $bin_path /usr/bin/frpc

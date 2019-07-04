@@ -19,7 +19,7 @@ include $(INCLUDE_DIR)/package.mk
 define Package/luci-i18n-sqm
   SECTION:=luci
   CATEGORY:=LuCI
-  SUBMENU:=3. Applications
+  SUBMENU:=X. Luci-i18n
   TITLE:=LuCI support for the sqm language package
   PKGARCH:=all
 endef
