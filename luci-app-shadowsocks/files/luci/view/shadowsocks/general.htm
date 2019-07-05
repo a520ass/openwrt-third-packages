@@ -81,7 +81,7 @@
 			if (xhr.status === 200) {
 				for (var k in elements) {
 					if (elements[k]) {
-						elements[k].textContent = status[k] ? "<%:RUNNING%>" : "<%:NOT RUNNING%>";
+						elements[k].textContent = status[k] ? '<em><b><font color=green><%:RUNNING%></font></b></em>' : '<em><b><font color=red><%:NOT RUNNING%></font></b></em>';
 					}
 				}
 			}
