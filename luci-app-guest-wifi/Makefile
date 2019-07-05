@@ -7,7 +7,7 @@
 include $(TOPDIR)/rules.mk
 
 LUCI_TITLE:=luci-app-guest-wifi
-LUCI_DEPENDS:=
+LUCI_DEPENDS:=+@luci-lib-ipkg
 LUCI_PKGARCH:=all
 PKG_VERSION:=1.0
 PKG_RELEASE:=1
