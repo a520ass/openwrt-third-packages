@@ -41,7 +41,7 @@ endef
 
 define Package/luci-i18n-sqm/install
 	$(INSTALL_DIR) $(1)/usr/lib/lua/luci/i18n
-	$(INSTALL_DIR) $(1)/usr/lib/sqm
+	#$(INSTALL_DIR) $(1)/usr/lib/sqm
 	$(INSTALL_DATA) $(PKG_BUILD_DIR)/sqm.*.lmo $(1)/usr/lib/lua/luci/i18n/
 	#$(INSTALL_DATA) ./help/*.help $(1)/usr/lib/sqm
 	\cp -rf ./help/*.help $(1)/usr/lib/sqm
