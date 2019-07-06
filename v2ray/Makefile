@@ -41,7 +41,7 @@ ifeq ($(ARCH),i386)
 endif
 ifeq ($(ARCH),arm)
 	PKG_ARCH_V2RAY:=arm
-	ifneq ($(BOARD),bcm53xx)
+  ifneq ($(BOARD),bcm53xx)
 		V2RAY_BIN:=v2ray_armv7
   endif
   ifeq ($(BOARD),kirkwood)
