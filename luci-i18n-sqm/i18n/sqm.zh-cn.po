@@ -79,7 +79,7 @@ msgstr "上传速度(kbit/s)(出口)<br />设置为0关闭出口控制："
 
 #: usr/lib/lua/luci/model/cbi/sqm.lua:78
 msgid ""
-"Create log file for this SQM instance under /var/run/sqm/${Inerface_name}."
+"Create log file for this SQM instance under /var/run/sqm/${Interface_name}."
 "debug.log. Make sure to delete log files manually."
 msgstr ""
 "创建日志文件到/var/run/sqm/<br />${Inerface_name}.debug.log。<br />请务必手动"
