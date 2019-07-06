@@ -82,7 +82,7 @@ msgid ""
 "Create log file for this SQM instance under /var/run/sqm/${Interface_name}."
 "debug.log. Make sure to delete log files manually."
 msgstr ""
-"创建日志文件到/var/run/sqm/<br />${Inerface_name}.debug.log。<br />请务必手动"
+"创建日志文件到/var/run/sqm/<br />${Interface_name}.debug.log。<br />请务必手动"
 "删除日志文件。"
 
 #: usr/lib/lua/luci/model/cbi/sqm.lua:82
