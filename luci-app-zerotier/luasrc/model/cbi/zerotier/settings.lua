@@ -10,6 +10,9 @@ e=t:option(Flag,"enabled",translate("Enable"))
 e.default=0
 e.rmempty=false
 
+e=t:option(Value,"secret",translate("Secret"))
+e.password=true
+
 e=t:option(DynamicList,"join",translate('ZeroTier Network ID'))
 e.password=true
 e.rmempty=false

@@ -29,3 +29,6 @@ msgstr "ZeroTier网络ID"
 
 msgid "Enable"
 msgstr "启用"
+
+msgid "Secret"
+msgstr "密钥"
