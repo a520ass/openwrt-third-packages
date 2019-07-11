@@ -47,7 +47,7 @@ Server_Update() {
 }
 
 name=shadowsocksr
-subscribe_url=($(uci get $name.@server_subscribe[0].subscribe_url))
+subscribe_url=($(uci get $name.@server_subscribe[0].subscribe_url)) #订阅服务器地址
 [ ${#subscribe_url[@]} -eq 0 ] && exit 1
 [ $(uci -q get $name.@server_subscribe[0].proxy || echo 0) -eq 0 ] && /etc/init.d/$name stop >/dev/null 2>&1
 log_name=${name}_subscribe
@@ -154,6 +154,7 @@ do
 				json_get_var ssr_ws_host host
 				json_get_var ssr_ws_path path
 				json_get_var ssr_tls tls
+				
 			fi
 
 
@@ -166,7 +167,8 @@ do
 			subscribe_x=$subscribe_x$ssr_host" "
 			ssrtype=$(echo $ssr_type | tr '[a-z]' '[A-Z]')
 			echo_date "$ssrtype节点：【$ssr_remarks】"
-
+			
+			# SSR
 			# echo "服务器地址: $ssr_host"
 			# echo "服务器端口 $ssr_port"
 			# echo "密码: $ssr_passwd"
@@ -176,6 +178,7 @@ do
 			# echo "混淆: $ssr_obfs"
 			# echo "混淆参数: $ssr_obfsparam"
 			# echo "备注: $ssr_remarks"
+			
 		done
 		for ((x=0;x<${#temp_host_o[@]};x++)) # 新旧服务器信息匹配，如果旧服务器信息不存在于新服务器信息则删除
 		do
