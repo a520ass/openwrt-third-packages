@@ -7,8 +7,8 @@
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=luci-i18n-sqm
-PKG_VERSION:=1.1.3
-PKG_RELEASE:=1
+PKG_VERSION:=1.1.4
+PKG_RELEASE:=2
 PKG_LICENSE:=GPLv3
 PKG_LICENSE_FILES:=LICENSE
 
@@ -41,9 +41,7 @@ endef
 
 define Package/luci-i18n-sqm/install
 	$(INSTALL_DIR) $(1)/usr/lib/lua/luci/i18n
-	$(INSTALL_DIR) $(1)/usr/lib/sqm
 	$(INSTALL_DATA) $(PKG_BUILD_DIR)/sqm.*.lmo $(1)/usr/lib/lua/luci/i18n/
-	$(INSTALL_DATA) ./help/*.help $(1)/usr/lib/sqm
 endef
 
 $(eval $(call BuildPackage,luci-i18n-sqm))
