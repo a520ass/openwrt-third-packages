@@ -23,7 +23,7 @@ define Package/luci-app-shadowsocks/Default
 	SECTION:=luci
 	CATEGORY:=LuCI
 	SUBMENU:=3. Applications
-	TITLE:=LuCI Support for ss (from github.com/shadowsocks)
+	TITLE:=GITHUB shadowsocks luci-app-shadowsocks
 	PKGARCH:=all
 	DEPENDS:=+iptables +iptables-mod-tproxy $(1)
 endef
