@@ -1,7 +1,10 @@
 msgid "Phtunnel"
-msgstr "花生壳PHTunnel"
+msgstr "花生壳 PHTunnel"
 
 msgid "Setup"
+msgstr "设置"
+
+msgid "setup"
 msgstr "设置"
 
 msgid "Base setup"

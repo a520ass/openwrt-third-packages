@@ -39,3 +39,15 @@ msgstr "上游 DNS 服务器(国内)"
 
 msgid "Muitiple DNS server can saperate with ','"
 msgstr "支持多个上游DNS服务器，用','分隔（注意用英文逗号).请填写您最快的DNS服务器"
+
+msgid "Running Status"
+msgstr "运行状态"
+
+msgid "RUNNING"
+msgstr "运行中"
+
+msgid "NOT RUNNING"
+msgstr "未运行"
+
+msgid "Collecting data..."
+msgstr "收集数据中..."

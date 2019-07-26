@@ -1,7 +1,7 @@
 m = Map("phtunnel", translate("setup"))
 m.reset = true
 
-local s = m:section(NamedSection, "base", "base", "Base setup")
+local s = m:section(NamedSection, "base", "base", translate("Base setup"))
 
 enabled = s:option(Flag, "enabled", translate("Enabled"))
 app_id = s:option(Value, "app_id", translate("App ID"))
