@@ -22,6 +22,26 @@ define Package/$(PKG_NAME)
   DEPENDS:=+librt +libpthread +libc +wget @!PACKAGE_phddns
 endef
 
+
+ifeq ($(ARCH),x86_64)
+	PKG_ARCH:=amd64
+endif
+ifeq ($(ARCH),mipsel)
+	PKG_ARCH:=mipsel
+endif
+ifeq ($(ARCH),mips)
+	PKG_ARCH:=mips
+endif
+ifeq ($(ARCH),i386)
+	PKG_ARCH:=x86
+endif
+ifeq ($(ARCH),arm)
+	PKG_ARCH:=arm
+endif
+ifeq ($(ARCH),aarch64)
+	PKG_ARCH:=arm64
+endif
+
 define Package/$(PKG_NAME)/description
 PHTunnel
 endef
@@ -46,7 +66,7 @@ define Package/$(PKG_NAME)/install
 	$(INSTALL_DIR) $(1)/etc/config
 	$(INSTALL_DIR) $(1)/etc/hotplug.d/iface
 
-	$(INSTALL_BIN) $(FILES_PATH)/usr/bin/phtunnel $(1)/usr/bin
+	$(INSTALL_BIN) $(FILES_PATH)/usr/bin/$(PKG_ARCH)/phtunnel $(1)/usr/bin
 	$(INSTALL_BIN) $(FILES_PATH)/etc/init.d/phtunnel $(1)/etc/init.d
 	$(INSTALL_BIN) $(FILES_PATH)/etc/config/phtunnel $(1)/etc/config
 	$(INSTALL_BIN) $(FILES_PATH)/etc/hotplug.d/iface/30-oray-phtunnel $(1)/etc/hotplug.d/iface
