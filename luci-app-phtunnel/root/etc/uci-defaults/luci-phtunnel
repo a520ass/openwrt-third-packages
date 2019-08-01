@@ -1,0 +1,11 @@
+#!/bin/sh
+
+uci -q batch <<-EOF >/dev/null
+	delete ucitrack.@phtunnel[-1]
+	add ucitrack phtunnel
+	set ucitrack.@phtunnel[-1].init=phtunnel
+	commit ucitrack
+EOF
+
+rm -f /tmp/luci-indexcache
+exit 0
