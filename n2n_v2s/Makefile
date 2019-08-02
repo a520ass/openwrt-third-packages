@@ -33,8 +33,8 @@ define Package/n2n_v2s
 endef
 
 define Build/Prepare
-    $(call Build/Prepare/Default)
-    $(CP) $(PKG_BUILD_DIR)/n2n_v2/* $(PKG_BUILD_DIR)
+	$(call Build/Prepare/Default)
+	$(CP) $(PKG_BUILD_DIR)/n2n_v2/* $(PKG_BUILD_DIR)
 endef
 
 define Package/n2n_v2s/install
