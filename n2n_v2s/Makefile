@@ -1,10 +1,10 @@
-﻿#
+#
 # Copyright (C) 2007-2012 OpenWrt.org
 #
 # This is free software, licensed under the GNU General Public License v2.
 # See /LICENSE for more information.
 #
-
+#
 include $(TOPDIR)/rules.mk
 
 PKG_SOURCE_URL:=https://github.com/meyerd/n2n
@@ -33,21 +33,21 @@ define Package/n2n_v2s
 endef
 
 define Build/Prepare
-	$(call Build/Prepare/Default)
-	$(CP) $(PKG_BUILD_DIR)/n2n_v2/* $(PKG_BUILD_DIR)
+        $(call Build/Prepare/Default)
+        $(CP) $(PKG_BUILD_DIR)/n2n_v2/* $(PKG_BUILD_DIR)
 endef
 
 define Package/n2n_v2s/install
-	$(INSTALL_DIR) $(1)/usr/sbin
-	$(INSTALL_BIN) $(PKG_BUILD_DIR)/edge $(1)/usr/sbin/
-	$(INSTALL_BIN) $(PKG_BUILD_DIR)/supernode $(1)/usr/sbin/
-	$(INSTALL_DIR) $(1)/etc/config
-	$(INSTALL_DATA) ./files/n2n_v2.config $(1)/etc/config/n2n_v2
-	$(INSTALL_DIR) $(1)/etc/init.d
-	$(INSTALL_BIN) ./files/n2n_v2.init $(1)/etc/init.d/n2n_v2
-	$(INSTALL_DIR) $(1)/usr/share/n2n_v2
-	$(INSTALL_BIN) ./files/n2n_v2.watchdog $(1)/usr/share/n2n_v2/n2n_v2-watchdog
-	$(INSTALL_BIN) ./files/n2n_v2.check $(1)/usr/share/n2n_v2/n2n_v2-check
+        $(INSTALL_DIR) $(1)/usr/sbin
+        $(INSTALL_BIN) $(PKG_BUILD_DIR)/edge $(1)/usr/sbin/
+        $(INSTALL_BIN) $(PKG_BUILD_DIR)/supernode $(1)/usr/sbin/
+        $(INSTALL_DIR) $(1)/etc/config
+        $(INSTALL_DATA) ./files/n2n_v2.config $(1)/etc/config/n2n_v2
+        $(INSTALL_DIR) $(1)/etc/init.d
+        $(INSTALL_BIN) ./files/n2n_v2.init $(1)/etc/init.d/n2n_v2
+        $(INSTALL_DIR) $(1)/usr/share/n2n_v2
+        $(INSTALL_BIN) ./files/n2n_v2.watchdog $(1)/usr/share/n2n_v2/n2n_v2-watchdog
+        $(INSTALL_BIN) ./files/n2n_v2.check $(1)/usr/share/n2n_v2/n2n_v2-check
 endef
 
 $(eval $(call BuildPackage,n2n_v2s))
