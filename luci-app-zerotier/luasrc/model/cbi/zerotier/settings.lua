@@ -17,5 +17,9 @@ e=t:option(DynamicList,"join",translate('ZeroTier Network ID'))
 e.password=true
 e.rmempty=false
 
+local apply = luci.http.formvalue("cbi.apply")
+if apply then
+	io.popen("/etc/init.d/zerotier restart")
+end
 
 return a
