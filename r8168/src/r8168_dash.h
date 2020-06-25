@@ -1,7 +1,7 @@
 /*
 ################################################################################
 #
-# r8125 is the Linux device driver released for Realtek 2.5Gigabit Ethernet
+# r8168 is the Linux device driver released for Realtek Gigabit Ethernet
 # controllers with PCI-Express interface.
 #
 # Copyright(c) 2020 Realtek Semiconductor Corp. All rights reserved.
@@ -31,8 +31,8 @@
  *  US6,570,884, US6,115,776, and US6,327,625.
  ***********************************************************************************/
 
-#ifndef _LINUX_R8125_DASH_H
-#define _LINUX_R8125_DASH_H
+#ifndef _LINUX_R8168_DASH_H
+#define _LINUX_R8168_DASH_H
 
 #define SIOCDEVPRIVATE_RTLDASH   SIOCDEVPRIVATE+2
 
@@ -172,10 +172,10 @@ RX_DASH_BUFFER_TYPE_2, *PRX_DASH_BUFFER_TYPE_2;
 #define OCP_REG_CONFIG0_DRV_WAIT_OOB     BIT_8
 #define OCP_REG_CONFIG0_TLSEN            BIT_7
 
-#define HW_DASH_SUPPORT_DASH(_M)        ((_M)->HwSuppDashVer > 0 )
-#define HW_DASH_SUPPORT_TYPE_1(_M)        ((_M)->HwSuppDashVer == 1 )
-#define HW_DASH_SUPPORT_TYPE_2(_M)        ((_M)->HwSuppDashVer == 2 )
-#define HW_DASH_SUPPORT_TYPE_3(_M)        ((_M)->HwSuppDashVer == 3 )
+#define HW_DASH_SUPPORT_DASH(_M)        ((_M)->HwSuppDashVer > 0)
+#define HW_DASH_SUPPORT_TYPE_1(_M)        ((_M)->HwSuppDashVer == 1)
+#define HW_DASH_SUPPORT_TYPE_2(_M)        ((_M)->HwSuppDashVer == 2)
+#define HW_DASH_SUPPORT_TYPE_3(_M)        ((_M)->HwSuppDashVer == 3)
 
 #define RECV_FROM_FW_BUF_SIZE (1520)
 #define SEND_TO_FW_BUF_SIZE (1520)
@@ -248,11 +248,11 @@ RX_DASH_BUFFER_TYPE_2, *PRX_DASH_BUFFER_TYPE_2;
 #define RTL_CMAC_R16(tp, reg)        readw (tp->cmac_ioaddr + (reg))
 #define RTL_CMAC_R32(tp, reg)        ((unsigned long) readl (tp->cmac_ioaddr + (reg)))
 
-int rtl8125_dash_ioctl(struct net_device *dev, struct ifreq *ifr);
+int rtl8168_dash_ioctl(struct net_device *dev, struct ifreq *ifr);
 void HandleDashInterrupt(struct net_device *dev);
 int AllocateDashShareMemory(struct net_device *dev);
 void FreeAllocatedDashShareMemory(struct net_device *dev);
 void DashHwInit(struct net_device *dev);
 
 
-#endif /* _LINUX_R8125_DASH_H */
+#endif /* _LINUX_R8168_DASH_H */

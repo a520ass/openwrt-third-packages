@@ -1,7 +1,7 @@
 /*
 ################################################################################
 #
-# r8125 is the Linux device driver released for Realtek 2.5Gigabit Ethernet
+# r8168 is the Linux device driver released for Realtek Gigabit Ethernet
 # controllers with PCI-Express interface.
 #
 # Copyright(c) 2020 Realtek Semiconductor Corp. All rights reserved.
@@ -79,7 +79,7 @@ enum mode_access {
 };
 
 #ifdef __KERNEL__
-int rtl8125_tool_ioctl(struct rtl8125_private *tp, struct ifreq *ifr);
+int rtl8168_tool_ioctl(struct rtl8168_private *tp, struct ifreq *ifr);
 #endif
 
 #endif /* _LINUX_RTLTOOL_H */
