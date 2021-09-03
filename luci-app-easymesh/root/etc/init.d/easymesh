@@ -85,7 +85,7 @@ stop(){
 	if [ "$enable" != 1 ]; then
 		if [ "$mesh_bat0" = "interface" ]; then
 			uci delete network.bat0
-			uci del_list
+			#uci del_list network.lan.ifname='bat0'
 			uci commit network
 		fi
 
